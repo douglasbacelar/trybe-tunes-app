@@ -34,7 +34,6 @@ class Album extends Component {
           <p data-testid="artist-name">{artistName}</p>
           <p data-testid="album-name">{albumName}</p>
         </header>
-        {console.log(albumList)}
         <section>
           <MusicCard
             albumList={ albumList }
