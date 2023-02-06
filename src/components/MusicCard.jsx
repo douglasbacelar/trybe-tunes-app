@@ -1,83 +1,66 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { addSong } from '../services/favoriteSongsAPI';
+import { addSong } from '../services/favoriteSongsAPI';
 import Loading from '../pages/Loading';
 
 class MusicCard extends Component {
   state = {
     isLoading: false,
-    checkbox: false,
-    music: '',
-    // favoriteList: [],
+    checked: false,
   };
-
-  async componentDidMount() {
-    this.favoriteSong();
-  }
 
   handleChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
+    console.log(target.value);
 
     this.setState({
       [name]: value,
-    });
+    }, this.favoriteSong);
   };
 
-  favoriteSong = async (e) => {
+  favoriteSong = async () => {
     this.setState({
       isLoading: true,
     }, async () => {
-      const evento = e.target.value;
-      console.log(evento);
-      // const selectMusic = await addSong();
+      await addSong();
       this.setState({
         isLoading: false,
-        // favoriteList: e.target.value,
       });
     });
   };
 
   render() {
-    const { albumList } = this.props;
-    const { isLoading, checkbox, music } = this.state;
-    const removeInfoAlbum = albumList.slice(1, albumList.length);
+    const { previewUrl, trackId, trackName } = this.props;
+    const { isLoading, checked } = this.state;
     if (isLoading) return <Loading />;
     return (
       <div>
         <ul>
-          {removeInfoAlbum.map((album, index) => (
-
-            <li
-              key={ index }
-              value={ music }
-              name="music"
-              onChange={ this.handleChange }
+          <li>
+            {trackName}
+            <audio data-testid="audio-component" src={ previewUrl } controls>
+              <track kind="captions" />
+              O seu navegador não suporta o elemento
+              {' '}
+              {' '}
+              <code>audio</code>
+              .
+            </audio>
+            <label
+              htmlFor="favoriteMusic"
             >
-              {album.trackName}
-              <audio data-testid="audio-component" src={ album.previewUrl } controls>
-                <track kind="captions" />
-                O seu navegador não suporta o elemento
-                {' '}
-                {' '}
-                <code>audio</code>
-                .
-              </audio>
-
-              <label htmlFor="favoriteMusic">
-                Favorita
-                <input
-                  data-testid={ `checkbox-music-${album.trackId}` }
-                  type="checkbox"
-                  id="favoriteMusic"
-                  name="checkbox"
-                  value={ checkbox }
-                  // onClick={ this.favoriteSong }
-                  onChange={ this.handleChange }
-                />
-              </label>
-            </li>
-          ))}
+              Favorita
+              <input
+                data-testid={ `checkbox-music-${trackId}` }
+                type="checkbox"
+                id="favoriteMusic"
+                name="checked"
+                checked={ checked }
+                onChange={ this.handleChange }
+              />
+            </label>
+          </li>
         </ul>
       </div>
     );
@@ -85,7 +68,9 @@ class MusicCard extends Component {
 }
 
 MusicCard.propTypes = {
-  albumList: PropTypes.array,
+  previewUrl: PropTypes.string,
+  trackId: PropTypes.string,
+  trackName: PropTypes.string,
 }.isRequired;
 
 export default MusicCard;

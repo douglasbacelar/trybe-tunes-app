@@ -23,7 +23,8 @@ class Header extends Component {
       <div>
         <header data-testid="header-component">
           { isLoading
-            ? <Loading /> : <p data-testid="header-user-name">{ username.name }</p>}
+            ? <Loading />
+            : <p data-testid="header-user-name">{ `Bem vindo ${username.name}` }</p>}
         </header>
         <nav>
           <ul>

@@ -27,6 +27,7 @@ class Album extends Component {
 
   render() {
     const { artistName, albumName, albumList } = this.state;
+    const albumJustMusics = albumList.slice(1, albumList.length);
     return (
       <div data-testid="page-album">
         <header>
@@ -35,9 +36,15 @@ class Album extends Component {
           <p data-testid="album-name">{albumName}</p>
         </header>
         <section>
-          <MusicCard
-            albumList={ albumList }
-          />
+          { albumJustMusics.map((album, index) => (
+            <MusicCard
+              key={ index }
+              previewUrl={ album.previewUrl }
+              trackId={ album.trackId }
+              trackName={ album.trackName }
+            />
+          ))}
+
         </section>
       </div>
     );
