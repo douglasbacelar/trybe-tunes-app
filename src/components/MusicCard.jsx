@@ -6,7 +6,6 @@ import Loading from '../pages/Loading';
 class MusicCard extends Component {
   state = {
     isLoading: false,
-    checked: false,
     favoriteList: [],
   };
 
