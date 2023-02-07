@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Loading from '../pages/Loading';
 
 class MusicCard extends Component {
   state = {
     isLoading: false,
     checked: false,
+    favoriteList: [],
+  };
+
+  componentDidMount() {
+    this.bestMusics();
+  }
+
+  bestMusics = async () => {
+    const favoriteMusics = await getFavoriteSongs();
+    this.setState({
+      isLoading: false,
+      favoriteList: [...favoriteMusics],
+    });
   };
 
   handleChange = ({ target }) => {
     const { name } = target;
+    // const { favoriteList } = this.state;
+    // console.log(favoriteList);
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    console.log(target.value);
 
     this.setState({
       [name]: value,
@@ -20,12 +34,20 @@ class MusicCard extends Component {
   };
 
   favoriteSong = async () => {
+    const { album } = this.props;
+    const { favoriteList } = this.state;
+    console.log(favoriteList);
     this.setState({
       isLoading: true,
     }, async () => {
-      await addSong();
+      if (favoriteList.some((song) => song.trackId === album.trackId)) {
+        await removeSong(album);
+      } else {
+        await addSong(album);
+      }
       this.setState({
         isLoading: false,
+        checked: true,
       });
     });
   };

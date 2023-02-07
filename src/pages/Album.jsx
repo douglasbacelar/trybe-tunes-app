@@ -28,6 +28,7 @@ class Album extends Component {
   render() {
     const { artistName, albumName, albumList } = this.state;
     const albumJustMusics = albumList.slice(1, albumList.length);
+    console.log(albumJustMusics);
     return (
       <div data-testid="page-album">
         <header>
@@ -42,6 +43,7 @@ class Album extends Component {
               previewUrl={ album.previewUrl }
               trackId={ album.trackId }
               trackName={ album.trackName }
+              album={ album }
             />
           ))}
 
