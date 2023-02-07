@@ -41,10 +41,11 @@ class MusicCard extends Component {
       } else {
         await addSong(album);
       }
-      const selectedFavSongs = await getFavoriteSongs();
+      // getFavoriteList();
+      const favSongs = await getFavoriteSongs();
       this.setState({
         isLoading: false,
-        favoriteList: [...selectedFavSongs],
+        favoriteList: [...favSongs],
       });
     });
   };

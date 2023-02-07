@@ -28,7 +28,6 @@ class Album extends Component {
   render() {
     const { artistName, albumName, albumList } = this.state;
     const albumJustMusics = albumList.slice(1, albumList.length);
-    console.log(albumJustMusics);
     return (
       <div data-testid="page-album">
         <header>
