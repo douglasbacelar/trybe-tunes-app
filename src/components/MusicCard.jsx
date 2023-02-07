@@ -34,26 +34,25 @@ class MusicCard extends Component {
   favoriteSong = async () => {
     const { album } = this.props;
     const { favoriteList } = this.state;
-    // console.log(favoriteList);
     this.setState({
       isLoading: true,
     }, async () => {
       if (favoriteList.some((song) => song.trackId === album.trackId)) {
-      // } else {
+        await removeSong(album);
+      } else {
         await addSong(album);
-        this.setState({
-          isLoading: false,
-          checked: true,
-        });
-        // console.log(album.trackId);
-        // await removeSong(album);
       }
+      const favSongs = await getFavoriteSongs();
+      this.setState({
+        isLoading: false,
+        favoriteList: [...favSongs],
+      });
     });
   };
 
   render() {
     const { previewUrl, trackId, trackName, album } = this.props;
-    const { isLoading, checked, favoriteList } = this.state;
+    const { isLoading, favoriteList } = this.state;
     if (isLoading) return <Loading />;
     return (
       <div>
