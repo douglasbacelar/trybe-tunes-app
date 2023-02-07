@@ -24,8 +24,6 @@ class MusicCard extends Component {
 
   handleChange = ({ target }) => {
     const { name } = target;
-    // const { favoriteList } = this.state;
-    // console.log(favoriteList);
     const value = target.type === 'checkbox' ? target.checked : target.value;
 
     this.setState({
@@ -36,25 +34,26 @@ class MusicCard extends Component {
   favoriteSong = async () => {
     const { album } = this.props;
     const { favoriteList } = this.state;
-    console.log(favoriteList);
+    // console.log(favoriteList);
     this.setState({
       isLoading: true,
     }, async () => {
       if (favoriteList.some((song) => song.trackId === album.trackId)) {
-        await removeSong(album);
-      } else {
+      // } else {
         await addSong(album);
+        this.setState({
+          isLoading: false,
+          checked: true,
+        });
+        // console.log(album.trackId);
+        // await removeSong(album);
       }
-      this.setState({
-        isLoading: false,
-        checked: true,
-      });
     });
   };
 
   render() {
-    const { previewUrl, trackId, trackName } = this.props;
-    const { isLoading, checked } = this.state;
+    const { previewUrl, trackId, trackName, album } = this.props;
+    const { isLoading, checked, favoriteList } = this.state;
     if (isLoading) return <Loading />;
     return (
       <div>
@@ -78,7 +77,7 @@ class MusicCard extends Component {
                 type="checkbox"
                 id="favoriteMusic"
                 name="checked"
-                checked={ checked }
+                checked={ favoriteList.some((song) => song.trackId === album.trackId) }
                 onChange={ this.handleChange }
               />
             </label>
