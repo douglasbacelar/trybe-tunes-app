@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
 import Loading from './Loading';
@@ -26,23 +26,35 @@ class Favorites extends Component {
     });
   };
 
+  handleChange = (music) => {
+    this.setState({ isLoading: true }, async () => {
+      await removeSong(music);
+      const selectedFavSongs = await getFavoriteSongs();
+      this.setState({
+        isLoading: false,
+        favorites: [...selectedFavSongs],
+      });
+    });
+  };
+
   render() {
     const { isLoading, favorites } = this.state;
-    if (isLoading) return <Loading />;
     return (
       <div data-testid="page-favorites">
         Favorites
         <Header />
-        {favorites.map((album, index) => (
-          <MusicCard
-            key={ index }
-            previewUrl={ album.previewUrl }
-            trackId={ album.trackId }
-            trackName={ album.trackName }
-            album={ album }
-            getFavoriteList={ this.favoriteListMusics }
-          />
-        ))}
+        {
+          isLoading ? <Loading /> : (
+            favorites.map((music, index) => (
+              <MusicCard
+                key={ index }
+                music={ music }
+                handleChange={ this.handleChange }
+                favoriteSongs={ favorites }
+              />
+            ))
+          )
+        }
       </div>
     );
   }

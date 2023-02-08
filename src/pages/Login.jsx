@@ -6,9 +6,6 @@ import Loading from './Loading';
 class Login extends Component {
   state = {
     name: '',
-    email: '',
-    description: '',
-    image: '',
     isLoading: false,
   };
 
@@ -22,11 +19,11 @@ class Login extends Component {
   };
 
   handleClick = async () => {
-    const { name, email, description, image } = this.state;
+    const { name } = this.state;
     this.setState({
       isLoading: true,
     });
-    await createUser({ name, email, description, image });
+    await createUser({ name });
     const { history } = this.props;
     this.setState({
       isLoading: false,
@@ -34,7 +31,7 @@ class Login extends Component {
   };
 
   render() {
-    const { name, isLoading, email, description, image } = this.state;
+    const { name, isLoading } = this.state;
     const minLength = 3;
     if (isLoading) return <Loading />;
     return (
@@ -48,36 +45,6 @@ class Login extends Component {
               id="name"
               value={ name }
               name="name"
-              onChange={ this.handleChange }
-            />
-          </label>
-          <label htmlFor="email">
-            Email:
-            <input
-              type="text"
-              id="email"
-              value={ email }
-              name="email"
-              onChange={ this.handleChange }
-            />
-          </label>
-          <label htmlFor="description">
-            Description
-            <input
-              type="text"
-              id="description"
-              value={ description }
-              name="description"
-              onChange={ this.handleChange }
-            />
-          </label>
-          <label htmlFor="image">
-            Image
-            <input
-              type="text"
-              id="image"
-              value={ image }
-              name="image"
               onChange={ this.handleChange }
             />
           </label>

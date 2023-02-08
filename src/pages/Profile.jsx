@@ -7,43 +7,40 @@ import Loading from './Loading';
 class Profile extends Component {
   state = {
     isLoading: false,
-    user: { name: '', email: '', image: '', description: '' },
+    userName: '',
   };
 
-  componentDidMount() {
-    this.user();
-  }
-
-  user = async () => {
-    const callUser = await getUser();
-    console.log(callUser);
-    this.setState({
-      isLoading: true,
-    }, async () => {
+  async componentDidMount() {
+    const userName = await getUser();
+    this.setState({ isLoading: true }, async () => {
       this.setState({
+        userName,
         isLoading: false,
-        user: callUser,
       });
     });
-  };
+  }
 
   render() {
-    const { isLoading, user } = this.state;
-    if (isLoading) return <Loading />;
+    const { isLoading, userName } = this.state;
     return (
       <div data-testid="page-profile">
         <Header />
-        <section>
-          <img
-            src={ user.image }
-            alt={ user.image }
-            data-testid="profile-image"
-          />
-          <h2>{ user.name }</h2>
-          <h2>{ user.email }</h2>
-          <p>{ user.description }</p>
-          <Link to="/profile/edit">Editar perfil</Link>
-        </section>
+        {isLoading ? <Loading /> : (
+          <>
+            <img
+              src={ userName.image }
+              alt={ userName.name }
+              data-testid="profile-image"
+            />
+            <h2>Nome</h2>
+            <p>{userName.name}</p>
+            <h2>Email</h2>
+            <p>{userName.email}</p>
+            <h2>Descrição</h2>
+            <p>{userName.description}</p>
+            <Link to="/profile/edit">Editar perfil</Link>
+          </>
+        )}
       </div>
     );
   }
