@@ -7,40 +7,51 @@ import Loading from './Loading';
 class Profile extends Component {
   state = {
     isLoading: false,
-    userName: '',
+    name: '',
+    email: '',
+    image: '',
+    description: '',
   };
 
   async componentDidMount() {
-    const userName = await getUser();
-    this.setState({ isLoading: true }, async () => {
-      this.setState({
-        userName,
-        isLoading: false,
-      });
+    this.setState({
+      isLoading: true,
+    });
+
+    const { name, email, image, description } = await getUser();
+    this.setState({
+      name,
+      email,
+      image,
+      description,
+      isLoading: false,
     });
   }
 
   render() {
-    const { isLoading, userName } = this.state;
+    const { isLoading, name, email, image, description } = this.state;
     return (
       <div data-testid="page-profile">
         <Header />
-        {isLoading ? <Loading /> : (
-          <>
-            <img
-              src={ userName.image }
-              alt={ userName.name }
-              data-testid="profile-image"
-            />
-            <h2>Nome</h2>
-            <p>{userName.name}</p>
-            <h2>Email</h2>
-            <p>{userName.email}</p>
-            <h2>Descrição</h2>
-            <p>{userName.description}</p>
-            <Link to="/profile/edit">Editar perfil</Link>
-          </>
-        )}
+        {
+          isLoading ? <Loading /> : (
+            <>
+              <h2>Nome</h2>
+              <p>{name}</p>
+              <h2>Email</h2>
+              <p>{email}</p>
+              <h2>Imagem</h2>
+              <img
+                data-testid="profile-image"
+                src={ image }
+                alt="Imagem do usuário"
+              />
+              <h2>Descrição</h2>
+              <p>{description}</p>
+              <Link to="/profile/edit">Editar perfil</Link>
+            </>
+          )
+        }
       </div>
     );
   }
