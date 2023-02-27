@@ -1,0 +1,86 @@
+.body-search {
+  margin-left: 250px;
+  margin-right: 6px;
+  overflow: hidden;
+}
+
+/* .album-container {
+  background-color: rgba(182, 175, 175, 0.08);
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 40px 0;
+  width: 95%;
+} */
+
+.found {
+  font-size: 1.1em;
+  margin: 20px 0;
+}
+
+.album-not-found {
+  font-size: 1.9em;
+  font-weight: 400;
+  margin-top: 130px;
+  text-align: center;
+}
+
+
+.button-search {
+  background: #0f8;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0.1px 10px 40px -12px #00ff8052;
+  color: #2b134b;
+  cursor: pointer;
+  font-weight: 800;
+  height: 50px;
+  letter-spacing: 3px;
+  margin: 10px;
+  outline: none;
+  text-transform: uppercase;
+  width: 8%;
+}
+
+.input-search {
+  color: #0f8;
+  font-weight: 520;
+  margin: 10px;
+  text-align: center;
+  width: 8%;
+}
+
+.input-artist {
+  border-radius: 40px;
+  font-weight: 520;
+  text-align: center;
+  padding: 1000px;
+ /*  width: 50%; */
+}
+
+.artist-search {
+  display: flex;
+  justify-content: center;
+}
+
+/* .text-field > input::placeholder {
+  color: #fff0f094;
+} */
+
+@media ( width < 920px ) {
+
+  .body-search {
+    margin-left: 78px;
+    transition: margin 0.4s;
+  }
+
+}
+
+@media ( max-width : 480px ) {
+
+  .body-search {
+    margin-left: 6px;
+  }
+
+}
