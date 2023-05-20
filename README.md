@@ -25,7 +25,7 @@ React application capable of playing songs from the most varied bands and artist
 > Edit the logged in person's profile.
 
 
-> Deploy: https://solar-system-project-five.vercel.app/
+ Deploy: https://trybe-tunes-app.vercel.app/
 
 ## 🌐 Required Skills:
 
