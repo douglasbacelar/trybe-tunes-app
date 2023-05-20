@@ -4,7 +4,8 @@
 
 ## 📝 About this Project
 
-React application capable of playing songs from the most varied bands and artists, creating a list of favorite songs and editing the profile of the logged in user. This application is capable of:
+React application capable of playing songs from the most varied bands and artists, creating a list of favorite songs and editing the profile of the logged in user. The main focus of the application was to practice routes using react and component lifecycles.
+This application is capable of:
 
 > Login;
 
@@ -57,6 +58,13 @@ npm start
 > JavaScript
 
 > React.js
+
+
+## ✅ Improvement points
+
+> Improve responsiveness;
+
+> implement backend
 
 ## 💻 Author
 
