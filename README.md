@@ -1,13 +1,63 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# 🪐 Trybe-tunes app
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+  <img width="100%" align="center" src="src/images/trybetunes.gif" />
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+## 📝 About this Project
+
+React application capable of playing songs from the most varied bands and artists, creating a list of favorite songs and editing the profile of the logged in user. This application is capable of:
+
+> Login;
+
+> Search for a band or artist;
+
+> List available albums by that band or artist;
+
+> View songs from a selected album;
+
+> Play a preview of songs from this album;
+
+> Favorite and unfavorite songs;
+
+> View the list of favorite songs;
+
+>View the profile of the logged-in person;
+
+> Edit the logged in person's profile.
+
+
+> Deploy: https://solar-system-project-five.vercel.app/
+
+## 🌐 Required Skills:
+
+- Make requests and consume data from an API;
+
+- Use the lifecycles of a React component;
+
+- Use the BrowserRouter component correctly;
+
+- Create routes, via Route;
+
+- Create navigation links in the application with the Link component.
+
+
+## 🛜 Installing the repository on your machine
+
+```js
+git clone git@github.com:douglasbacelar/trybe-tunes-app.git
+npm install
+npm start
+```
+
+## 🔧 Tools and Methodologies Used
+
+> HTML5 Semântico
+
+> CSS
+
+> JavaScript
+
+> React.js
+
+## 💻 Author
+
+Desenvolvido por [Douglas Bacelar](https://www.linkedin.com/in/douglasbacelar/)
