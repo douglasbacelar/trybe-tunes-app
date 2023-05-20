@@ -1,4 +1,4 @@
-# 🪐 Trybe-tunes app
+# 🎵 Trybe-tunes app
 
   <img width="100%" align="center" src="src/images/trybetunes.gif" />
 
